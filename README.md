@@ -1,6 +1,13 @@
-#Adder
+# Adder
 
 ![An adder](https://upload.wikimedia.org/wikipedia/commons/2/28/Loch_Shin_adder.JPG)
+
+## Download 
+
+```
+$ git clone https://github.com/ucsd-cse131/01-adder.git
+$ cd 01-adder/
+```
 
 In this assignment you'll implement a compiler for a small language called
 Adder (because it primarily adds things).
@@ -278,7 +285,7 @@ example: you can create `.s` files from scratch in the `output`
 directory to experiment with, if you want to practice with assembly
 instructions without the compiler in the way.
 
-### Crafting Tests (10-for-10)
+### Crafting Tests (5-for-5)
 
 The creators of the **5 hardest tests** get **5%** of total points as **extra credit**
 
