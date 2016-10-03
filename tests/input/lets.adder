@@ -1,7 +1,7 @@
-let x = 10, 
-    z = let x = add1(add1(x)), 
-            y = add1(x)
-        in 
+let x = 10,
+    z = let xa = add1(add1(x)),
+            y  = add1(xa)
+        in
             y
-in 
+in
     add1(z)

@@ -2,7 +2,7 @@
 
 ![An adder](https://upload.wikimedia.org/wikipedia/commons/2/28/Loch_Shin_adder.JPG)
 
-## Download 
+## Download
 
 ```
 $ git clone https://github.com/ucsd-cse131/01-adder.git
@@ -93,10 +93,97 @@ Here are some examples of Adder programs:
 
 | Concrete Syntax | Abstract Syntax | Answer |
 ------------------|-----------------|---------
-| 5               | `Number(5)`     | 5      |
-| sub1(add1(sub1(5))) | `Prim1(Sub1, Prim1(Add1, Prim1(Sub1, Number(5))))` | 4 |
-| let x = 5 in add1(x) | `Let([("x", Number(5))], Prim1(Add1, Id("x")))` | 6 |
-| let x = 5, y = sub1(x) in sub1(y) | `Let([("x", Number(5)), ("y", Prim1(Sub1(Id("x"))))], Prim1(Sub1("y")))` | 3 |
+
+
+### Example 1
+
+**Concrete Syntax**
+
+```python
+5               
+```
+
+**Abstract Syntax
+
+```haskell
+Number(5)
+```
+
+**Result**
+
+```
+5      
+```
+
+### Example 2
+
+**Concrete Syntax**
+
+```python
+sub1(add1(sub1(5)))
+```
+
+```haskell
+Prim1(Sub1, Prim1(Add1, Prim1(Sub1, Number(5))))
+```
+
+**Result**
+
+```
+4
+```
+
+### Example 3
+
+**Concrete Syntax**
+
+```python
+let x = 5 in add1(x)
+```
+
+**Abstract Syntax**
+
+```haskell
+Let (Bind "x" ...)
+    (Number(5))
+    (Prim1(Add1, Id("x")))
+```
+
+**Result**
+
+```
+6
+```
+
+### Example 4
+
+**Concrete Syntax**
+
+```python
+let x = 5
+  , y = sub1(x)
+in
+  sub1(y)
+```
+
+**Result**
+
+```
+3
+```
+
+**Abstract Syntax**
+
+```haskell
+Let (Bind "x")
+    (Number(5))  
+    (Let (Bind "y")
+         (Prim1(Sub1(Id("x"))))
+         (Prim1(Sub1("y"))))
+```
+
+
+
 
 ## Implementing a Compiler for Adder
 
@@ -185,8 +272,7 @@ if you have questions about the concrete syntax (or ask) of an instruction.
 
 The compiler should **signal an error** if:
 
-1. There is a binding list containing **two or more bindings with the same name**
-2. An **identifier is unbound** (there is no surrounding let binding for it)
+* An **identifier is unbound** (there is no surrounding let binding for it)
 
 At any place in your code, you can signal an error by using
 
