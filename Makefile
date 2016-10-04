@@ -2,7 +2,7 @@
 
 COURSE=cs131e
 ASGN=01
-COMPILER=adder 
+COMPILER=adder
 EXT=adder
 
 ######################################################
