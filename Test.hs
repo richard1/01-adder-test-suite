@@ -36,7 +36,10 @@ adderTests sc =
 yourTests sc =
   [ mkTest sc "badVar" File (Left (unboundVarString "x")),
     mkTest sc "badLet" File (Left (unboundVarString "y")),
-    mkTest sc "fiveLets" File (Right "5")
+    mkTest sc "fiveLets" File (Right "5"),
+    mkTest sc "big_test" (Code "let z = sub1(5), y = sub1(z) in sub1(add1(add1(y)))") (Right "4"),
+    mkTest sc "ignored_let_right" (Code "let z = sub1(5), y = sub1(z), l = 5 in sub1(add1(add1(y)))") (Right "4"),
+    mkTest sc "ignored_let_left" (Code "let l = 5, z = sub1(5), y = sub1(z) in sub1(add1(add1(y)))") (Right "4")
   ]
 
 unboundVarString :: String -> String
