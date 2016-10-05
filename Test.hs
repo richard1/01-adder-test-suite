@@ -34,9 +34,12 @@ adderTests sc =
 --------------------------------------------------------------------------------
 
 yourTests sc =
-  [ mkTest sc "badVar" File (Left undefinedString),
-    mkTest sc "badLet" File (Left undefinedString),
+  [ mkTest sc "badVar" File (Left (unboundVarString "x")),
+    mkTest sc "badLet" File (Left (unboundVarString "y")),
     mkTest sc "fiveLets" File (Right "5")
   ]
+
+unboundVarString :: String -> String
+unboundVarString var = undefinedString
 
 undefinedString = error "Test Invalid: Tester must fill in the correct string here!"
