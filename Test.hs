@@ -17,7 +17,7 @@ main = do
 tests :: Score -> TestTree
 tests sc = testGroup "Tests"
   [ testGroup "Adder"           (adderTests   sc)
-  , testGroup "Your-Tests"      (yourTests    sc)
+  , testGroup "Community-Tests" (yourTests    sc)
   ]
 
 adderTests sc =
@@ -34,5 +34,9 @@ adderTests sc =
 --------------------------------------------------------------------------------
 
 yourTests sc =
-  [ -- fill in your tests here
+  [ mkTest sc "badVar" File (Left undefinedString),
+    mkTest sc "badLet" File (Left undefinedString),
+    mkTest sc "fiveLets" File (Right "5")
   ]
+
+undefinedString = error "Test Invalid: Tester must fill in the correct string here!"
