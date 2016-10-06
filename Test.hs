@@ -5,6 +5,7 @@ import           Control.Exception
 import           System.Exit
 import           Test.Tasty
 import           Text.Printf
+import           Data.Int
 
 main :: IO ()
 main = do
@@ -40,7 +41,8 @@ yourTests sc =
     mkTest sc "big_test" (Code "let z = sub1(5), y = sub1(z) in sub1(add1(add1(y)))") (Right "4"),
     mkTest sc "ignored_let_right" (Code "let z = sub1(5), y = sub1(z), l = 5 in sub1(add1(add1(y)))") (Right "4"),
     mkTest sc "ignored_let_left" (Code "let l = 5, z = sub1(5), y = sub1(z) in sub1(add1(add1(y)))") (Right "4"),
-    mkTest sc "shadow" (Code "let z = sub1(5), y = sub1(z) in let y = 1 in y") (Right "1")
+    mkTest sc "shadow" (Code "let z = sub1(5), y = sub1(z) in let y = 1 in y") (Right "1"),
+    mkTest sc "yOutOfScope" File (Left (unboundVarString "y"))
   ]
 
 unboundVarString :: String -> String

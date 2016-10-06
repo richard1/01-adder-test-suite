@@ -1,0 +1,13 @@
+make[1]: Entering directory '/home/chris/dmp/ucsd/fall16/cse131/01-adder'
+adder  tests/input/yOutOfScope.adder > tests/output/yOutOfScope.s
+Errors found!
+tests/input/yOutOfScope.adder:4:4-5: Identifier: y Unbound!
+
+
+         4|     y
+                ^
+
+Makefile:35: recipe for target 'tests/output/yOutOfScope.s' failed
+make[1]: *** [tests/output/yOutOfScope.s] Error 1
+rm tests/output/yOutOfScope.s
+make[1]: Leaving directory '/home/chris/dmp/ucsd/fall16/cse131/01-adder'
